@@ -35,6 +35,9 @@ Her dosya türü için component bazlı yapı oluştur. Bu yaklaşım tüm proje
 ### ZORUNLU COMPONENT KURALI
 Dosya uzantısı farketmeksizin, her dosya mutlaka component yapısında olmalıdır. Uzun kodlu dosyalar component sistemine aykırıdır ve kesinlikle oluşturulmamalıdır.
 
+### ZORUNLU: Dil Component Sistemi (Tek Dil İçin Bile)
+**ÖNEMLİ:** Projede tek dil olsa bile, sonradan dil ekleme kolaylığı için mutlaka component yapıda dil sistemi kurulmalıdır. Bu yaklaşım gelecekteki genişletmeleri kolaylaştırır ve kod yapısını daha sürdürülebilir hale getirir.
+
 ### Universal Component Yapısı
 Her component, kendi dosya türüne uygun şekilde organize edilmelidir:
 - **Frontend Components:** HTML, CSS, JS, TS, JSX, Vue, Svelte dosyaları
@@ -50,6 +53,11 @@ Her component, kendi dosya türüne uygun şekilde organize edilmelidir:
   ├── layout/      # Layout componentleri (header, footer, sidebar)
   ├── sections/    # Sayfa bölümleri (hero, about, contact)
   ├── backend/     # Backend componentleri (api, database, services)
+  ├── language/    # Dil componentleri (zorunlu - tek dil için bile)
+  │   ├── manager/ # Dil yönetim componentleri
+  │   ├── files/   # Dil dosyaları (JSON component olarak)
+  │   ├── ui/      # Dil değiştirici UI componentleri
+  │   └── utils/   # Dil yardımcı fonksiyonları
   ├── utils/       # Yardımcı fonksiyonlar
   └── config/      # Konfigürasyon dosyaları
 ```
@@ -364,3 +372,111 @@ Dinamik değerler için CSS custom properties kullan.
 
 ### Modern CSS Features
 Container queries, aspect-ratio, clamp() gibi modern özellikleri kullan.
+
+## Dil Component Sistemi Standartları
+
+### ZORUNLU: Dil Component Yapısı (Tek Dil İçin Bile)
+**ÖNEMLİ:** Projede tek dil olsa bile, sonradan dil ekleme kolaylığı için mutlaka component yapıda dil sistemi kurulmalıdır.
+
+### Dil Component Klasör Yapısı
+```
+/components/language/
+├── manager/              # Dil yönetim componentleri
+│   ├── language-manager.js
+│   ├── language-manager.css
+│   └── language-manager.php
+├── files/               # Dil dosyaları (component olarak)
+│   ├── tr.json          # Türkçe component (ana dil)
+│   ├── en.json          # İngilizce component (gelecek için hazır)
+│   ├── fr.json          # Fransızca component (gelecek için hazır)
+│   ├── ar.json          # Arapça component (RTL - gelecek için hazır)
+│   └── de.json          # Almanca component (gelecek için hazır)
+├── ui/                  # Dil değiştirici UI componentleri
+│   ├── language-selector.html
+│   ├── language-selector.css
+│   └── language-selector.js
+└── utils/               # Dil yardımcı fonksiyonları
+    ├── translation-helper.js
+    ├── rtl-helper.css
+    └── language-validator.js
+```
+
+### Dil Dosyası Component Formatı
+Her dil dosyası component olarak organize edilir:
+
+#### Ana Dil Dosyası (Aktif)
+```json
+{
+  "component_info": {
+    "name": "turkish-language",
+    "version": "1.0.0",
+    "description": "Türkçe dil component'i",
+    "rtl": false,
+    "charset": "utf-8",
+    "active": true,
+    "author": "AI Assistant",
+    "created": "2024-01-15",
+    "last_updated": "2024-01-15",
+    "dependencies": [],
+    "master_index_required": true
+  },
+  "translations": {
+    "common": {
+      "welcome": "Hoş Geldiniz",
+      "loading": "Yükleniyor...",
+      "error": "Hata"
+    },
+    "navigation": {
+      "home": "Ana Sayfa",
+      "about": "Hakkımızda",
+      "contact": "İletişim"
+    }
+  }
+}
+```
+
+#### Gelecek Dil Dosyası (Hazır)
+```json
+{
+  "component_info": {
+    "name": "english-language",
+    "version": "1.0.0",
+    "description": "İngilizce dil component'i",
+    "rtl": false,
+    "charset": "utf-8",
+    "active": false,
+    "author": "AI Assistant",
+    "created": "2024-01-15",
+    "last_updated": "2024-01-15",
+    "dependencies": [],
+    "master_index_required": true,
+    "status": "ready_for_translation"
+  },
+  "translations": {
+    "common": {
+      "welcome": "",
+      "loading": "",
+      "error": ""
+    },
+    "navigation": {
+      "home": "",
+      "about": "",
+      "contact": ""
+    }
+  }
+}
+```
+
+### Dil Component Kuralları
+- **Zorunlu Component Başlığı:** Her dil dosyası component başlığı ile başlamalıdır
+- **Modüler Yapı:** Her dil kendi component'i olarak izole edilir
+- **Gelecek Genişletme:** Yeni diller kolayca component olarak eklenebilir
+- **Component İzolasyonu:** Her dil dosyası kendi namespace'inde çalışır
+- **Tek Dil İçin Özel:** Tek dil projesi olsa bile tüm yapı hazır olmalıdır
+
+### Dil Component Avantajları
+- **Gelecek Odaklı:** Sonradan dil ekleme çok kolay
+- **Sürdürülebilir:** Kod yapısı daha organize
+- **Esnek:** İhtiyaç halinde hızlı genişletme
+- **Profesyonel:** Standart dil yönetim sistemi
+- **Component Uyumlu:** Mevcut component sistemine uygun

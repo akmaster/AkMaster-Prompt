@@ -69,6 +69,9 @@ Tüm sayfalar aynı breakpoint'lerde aynı şekilde davranmalı (Mobile, Tablet,
 
 ## Dil Yerelleştirme ve Uluslararasılaştırma (i18n/l10n)
 
+### ZORUNLU: Component Tabanlı Dil Sistemi (Tek Dil İçin Bile)
+**ÖNEMLİ:** Projede tek dil olsa bile, sonradan dil ekleme kolaylığı için mutlaka component yapıda dil sistemi kurulmalıdır. Bu yaklaşım gelecekteki genişletmeleri kolaylaştırır ve kod yapısını daha sürdürülebilir hale getirir.
+
 ### Çoklu Dil Desteği Seçenekleri
 - **URL Tabanlı (SEO Önerilen):** Her dil ayrı URL'de (`/tr/`, `/en/`, `/fr/`)
 - **Subdomain Tabanlı:** Dil bazlı subdomain'ler (`tr.site.com`, `en.site.com`)
@@ -91,7 +94,7 @@ Tüm sayfalar aynı breakpoint'lerde aynı şekilde davranmalı (Mobile, Tablet,
 
 ## Frontend Dil Yerelleştirme Teknikleri
 
-### Component Tabanlı Dil Dosyası Yapısı
+### Component Tabanlı Dil Dosyası Yapısı (Tek Dil İçin Bile Zorunlu)
 ```
 /components/language/
 ├── manager/              # Dil yönetim componentleri
@@ -99,11 +102,11 @@ Tüm sayfalar aynı breakpoint'lerde aynı şekilde davranmalı (Mobile, Tablet,
 │   ├── language-manager.css
 │   └── language-manager.php
 ├── files/               # Dil dosyaları (component olarak)
-│   ├── yerel_dil.json   # Ana dil component
-│   ├── en.json          # İngilizce component
-│   ├── fr.json          # Fransızca component
-│   ├── ar.json          # Arapça component (RTL)
-│   └── de.json          # Almanca component
+│   ├── tr.json          # Türkçe component (ana dil)
+│   ├── en.json          # İngilizce component (gelecek için hazır)
+│   ├── fr.json          # Fransızca component (gelecek için hazır)
+│   ├── ar.json          # Arapça component (RTL - gelecek için hazır)
+│   └── de.json          # Almanca component (gelecek için hazır)
 ├── ui/                  # Dil değiştirici UI componentleri
 │   ├── language-selector.html
 │   ├── language-selector.css
@@ -113,6 +116,8 @@ Tüm sayfalar aynı breakpoint'lerde aynı şekilde davranmalı (Mobile, Tablet,
     ├── rtl-helper.css
     └── language-validator.js
 ```
+
+**NOT:** Tek dil projesi olsa bile, gelecekte dil ekleme kolaylığı için tüm dil dosyaları component olarak oluşturulur. Aktif olmayan dil dosyaları boş bırakılır veya temel yapı ile hazırlanır.
 
 ### Component Tabanlı Dil Dosyası Formatı
 Her dil dosyası component olarak organize edilir:

@@ -302,6 +302,9 @@ Geliştiriciler için teknik detaylar
 
 ## Admin Panel Çoklu Dil Desteği
 
+### ZORUNLU: Component Tabanlı Dil Yönetimi (Tek Dil İçin Bile)
+**ÖNEMLİ:** Admin panel projelerinde tek dil olsa bile, sonradan dil ekleme kolaylığı için mutlaka component yapıda dil yönetim sistemi kurulmalıdır.
+
 ### Admin Panel Dil Yönetimi
 - **Dil Ekleme/Çıkarma:** Yeni dil ekleme, mevcut dili deaktive etme
 - **Çeviri Editörü:** WYSIWYG çeviri editörü
@@ -309,6 +312,7 @@ Geliştiriciler için teknik detaylar
 - **Çeviri Durumu:** Hangi içeriklerin çevrildiğini takip
 - **Otomatik Çeviri:** Google Translate API entegrasyonu
 - **Çevirmen Yönetimi:** Çevirmen atama ve yetki yönetimi
+- **Component Tabanlı Yapı:** Tüm dil dosyaları component olarak yönetilir
 
 ### Admin Panel Çevirileri
 Admin panel arayüzünün çevrilmesi
@@ -318,6 +322,13 @@ Admin panel arayüzünün çevrilmesi
 
 ### Dil Durumu
 Hangi dillerin aktif olduğu yönetimi
+
+### Tek Dil İçin Özel Admin Panel Kuralları
+- **Dil Component Hazırlığı:** Tek dil olsa bile tüm dil component'leri hazır olmalı
+- **Gelecek Dil Hazırlığı:** Yeni dil ekleme için admin panel hazır olmalı
+- **Component Yapısı:** Dil yönetimi component standartlarında olmalı
+- **UI Gizleme:** Tek dil için dil yönetim UI'ı gizli olmalı
+- **Genişletme Kolaylığı:** Sonradan dil ekleme çok kolay olmalı
 
 ## Admin Panel API Yönetimi
 

@@ -127,6 +127,9 @@ Her önemli adımda otomatik checkpoint oluştur (workflow_status, current_task,
 
 **Görev:** Projenin ana dilini belirle ve çoklu dil desteği ihtiyacını değerlendir.
 
+**ZORUNLU: Component Tabanlı Dil Sistemi Kurulumu**
+**ÖNEMLİ:** Tek dil olsa bile, sonradan dil ekleme kolaylığı için mutlaka component yapıda dil sistemi kurulmalıdır. Bu yaklaşım gelecekteki genişletmeleri kolaylaştırır.
+
 **Ana Dil Seçimi:** Kullanıcıya projenin ana dilini sor:
 - **Yerel Dil (Önerilen):** Hedef pazar için optimize
 - **İngilizce:** Uluslararası pazar için
@@ -144,18 +147,26 @@ Her önemli adımda otomatik checkpoint oluştur (workflow_status, current_task,
 - ❌ Çeviri maliyeti
 - ❌ Daha fazla bakım
 
-**Tek Dil (Ana Dil):**
+**Tek Dil (Ana Dil) - Component Yapıda:**
 - ✅ Hızlı geliştirme
 - ✅ Düşük maliyet
 - ✅ Basit bakım
-- ❌ Sınırlı erişim
-- ❌ SEO sınırlaması
+- ✅ Gelecekte dil ekleme kolaylığı
+- ✅ Component yapıda hazır altyapı
+- ❌ Sınırlı erişim (şimdilik)
+- ❌ SEO sınırlaması (şimdilik)
 
 **Dil Seçimi Rehberi:** Kullanıcıya dil seçimi konusunda yardım et:
 - **Yerel Pazar Odaklı Proje:** Yerel dil + İngilizce (opsiyonel)
 - **Uluslararası Proje:** İngilizce + hedef ülke dilleri
 - **Bölgesel Proje:** Bölge dili + İngilizce
 - **Kurumsal Proje:** Ana dil + müşteri dilleri
+
+**Component Tabanlı Dil Sistemi Avantajları:**
+- **Gelecek Odaklı:** Sonradan dil ekleme çok kolay
+- **Sürdürülebilir:** Kod yapısı daha organize
+- **Esnek:** İhtiyaç halinde hızlı genişletme
+- **Profesyonel:** Standart dil yönetim sistemi
 
 **Çıktı:** Seçilen ana dili ve çoklu dil kararını `project_data.ana_dil` ve `project_data.coklu_dil_destegi`'ne kaydet. `workflow_status`'u `DIL_DOSYA_HAZIRLAMA`'ya güncelle.
 
@@ -231,13 +242,26 @@ Her önemli adımda otomatik checkpoint oluştur (workflow_status, current_task,
 
 **Görev:** Seçilen dil(ler) için component tabanlı dil dosyası yapısını oluştur ve dil yönetim sistemini hazırla.
 
+**ZORUNLU: Component Tabanlı Dil Sistemi Kurulumu (Tek Dil İçin Bile)**
+**ÖNEMLİ:** Tek dil olsa bile, gelecekte dil ekleme kolaylığı için mutlaka component yapıda dil sistemi kurulmalıdır.
+
 **Component Tabanlı Dil Sistemi Kurulumu:**
 - **Dil Component Klasörü Oluşturma:** `/components/language/` klasör yapısını oluştur
-- **Dil Dosyaları Oluşturma:** Seçilen diller için JSON component dosyaları oluştur
+- **Dil Dosyaları Oluşturma:** 
+  - Ana dil için tam JSON component dosyası oluştur
+  - Gelecek diller için boş/temel yapıda JSON component dosyaları oluştur
+  - Tüm dil dosyaları component standartlarında olmalı
 - **LanguageManager Component'i:** Dil yönetimi için ana component'i oluştur
-- **Dil Değiştirici UI:** Kullanıcı dostu dil seçim arayüzü component'i oluştur
+- **Dil Değiştirici UI:** Kullanıcı dostu dil seçim arayüzü component'i oluştur (tek dil için gizli)
 - **RTL Desteği:** RTL diller için özel CSS component'leri hazırla
 - **Dil Validator:** Dil dosyalarının doğruluğunu kontrol eden component oluştur
+
+**Tek Dil İçin Özel Kurallar:**
+- **Ana Dil Dosyası:** Seçilen dil için tam içerikli JSON dosyası
+- **Gelecek Dil Dosyaları:** Boş component yapısında hazır dosyalar
+- **UI Gizleme:** Dil değiştirici UI tek dil için gizli
+- **URL Yapısı:** Tek dil için basit URL yapısı (gelecekte genişletilebilir)
+- **Cookie Yönetimi:** Tek dil için basit cookie yönetimi
 
 **Çıktı:** Dil dosyası yapısını `project_data.dil_dosya_yapisi`'na kaydet. `workflow_status`'u `TASARIM_TEMELLERI`'ne güncelle.
 
